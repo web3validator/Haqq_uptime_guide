@@ -1,0 +1,54 @@
+      # How long a halted chain takes in minutes to generate an alarm
+      stalled_minutes: 10
+
+      # Most basic alarm, you just missed x blocks ... would you like to know?
+      consecutive_enabled: yes
+      # How many missed blocks should trigger a notification?
+      consecutive_missed: 5
+      # NOT USED: future hint for pagerduty's routing
+      consecutive_priority: critical
+
+      # For each chain there is a specific window of blocks and a percentage of missed blocks that will result in
+      # a downtime jail infraction. Should an alert be sent if a certain percentage of this window is exceeded?
+      percentage_enabled: no
+      # What percentage should trigger the alert
+      percentage_missed: 10
+      # Not used yet, pagerduty routing hint
+      percentage_priority: warning
+
+      # Should an alert be sent if the validator is not in the active set ie, jailed,
+      # tombstoned, unbonding?
+      alert_if_inactive: yes
+      # Should an alert be sent if no RPC servers are responding? (Note this alarm is instantaneous with no delay)
+      alert_if_no_servers: yes
+
+      # for this *specific* chain it's possible to override alert settings. If the api_key or webhook addresses are empty,
+      # the global settings will be used. Note, enabled must be set both globally and for each chain.
+
+      # Chain specific setting for pagerduty
+      pagerduty:
+        enabled: yes
+        api_key: "" # uses default if blank
+
+      # Discord settings
+      discord:
+        enabled: yes
+        webhook: "" # uses default if blank
+
+      # Telegram settings
+      telegram:
+        enabled: yes
+        api_key: "" # uses default if blank
+        channel: "" # uses default if blank
+
+    # This section covers our RPC providers. No LCD (aka REST) endpoints are used, only TM's RPC endpoints
+    # Multiple hosts are encouraged, and will be tried sequentially until a working endpoint is discovered.
+    nodes:
+      # URL for the endpoint. Must include protocol://hostname:port
+      - url: tcp://localhost:26657
+        # Should we send an alert if this host isn't responding?
+        alert_if_down: yes
+      # repeat hosts for monitoring redundancy
+      - url: https://some-other-node:443
+        alert_if_down: no
+
