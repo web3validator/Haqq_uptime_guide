@@ -54,7 +54,7 @@ docker run --rm ghcr.io/blockpane/tenderduty:latest -example-config >config.yml
 ```
 nano $HOME/tenderduty/config.yml
 ```
-або переглянути на цьому ж репозиторії -> [config](https://github.com/MaxMavaIll/haqq-Alert-Monitoring-Setup/blob/main/config.yml)
+або переглянути на цьому ж репозиторії -> [config](https://github.com/cybernekit/Haqq_uptime_guide/blob/main/config.yml)
 
 ### Для налаштування моніторингу нам достатньо змінити у конфігу:
 
